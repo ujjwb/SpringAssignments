@@ -1,14 +1,16 @@
 package com.assignment.Spring1;
 
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PlayInstrumentImpl {
     @Autowired
     private Instrument instrument;
+
+    public PlayInstrumentImpl(Instrument instrument) {
+        this.instrument = instrument;
+    }
 
     public void playInstrument(){
 

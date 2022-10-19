@@ -8,6 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class Spring1Application {
 
+
 	public static void main(String[] args) {
 		ConfigurableApplicationContext applicationContext=SpringApplication.run(Spring1Application.class,args);
 		PlayInstrumentImpl playInstrument=applicationContext.getBean(PlayInstrumentImpl.class);
