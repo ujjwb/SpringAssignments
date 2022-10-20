@@ -1,9 +1,5 @@
 package com.assignment.spring2;
 
-//import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
-
-
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
@@ -49,11 +45,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Employee" +" Id: " + id + " Name: " + name +" Age: " + age;
     }
 
     @Override

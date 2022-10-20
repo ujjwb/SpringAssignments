@@ -1,11 +1,8 @@
 package com.assignment.spring2;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -22,12 +19,12 @@ public class EmpController {
         return "Welcome to spring boot";
     }
 
-    @GetMapping("/emp")
+    @GetMapping("/emps")
     public List<Employee> getAll(){
         return List.copyOf(empService.findAll());
     }
 
-    @GetMapping("/emp/{id}")
+    @GetMapping("/emps/{id}")
     public Employee getOne(@PathVariable int id){
 
         Employee e1=empService.findOne(id);
@@ -37,19 +34,22 @@ public class EmpController {
         return e1;
     }
 
-    @PostMapping("/emp")
-    public ResponseEntity<Employee> putOne(@Valid @RequestBody Employee employee){
+    @PostMapping("/emps")
+    public void postOne(@Valid @RequestBody Employee employee){
         empService.addOne(employee);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(employee.getId())
-                 .toUri();
-        return ResponseEntity.created(location).build();
     }
 
-    @DeleteMapping("/emp/{id}")
+    @DeleteMapping("/emps/{id}")
     public void delOne(@PathVariable int id){
-        empService.remOne(id);
+
+        if(!empService.remOne(id)){
+            throw new EmployeeNotFoundException("id: "+id);
+        }
+    }
+    @PutMapping("/emps")
+    public void putOne(@Valid @RequestBody Employee employee){
+        if(!empService.update(employee)){
+            throw new EmployeeNotFoundException("id: "+employee.getId());
+        }
     }
 }
