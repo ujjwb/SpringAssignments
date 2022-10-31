@@ -3,7 +3,7 @@ package com.assignment.org.entity;
 import com.fasterxml.jackson.annotation.JsonFilter;
 import org.springframework.stereotype.Component;
 
-@JsonFilter("NewBeanFilter")
+@JsonFilter("Filter")
 public class Employee2 {
     private String Name;
     private Long id;
